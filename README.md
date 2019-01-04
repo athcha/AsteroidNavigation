@@ -6,7 +6,7 @@ In this project, you will create algorithms to navigate your spaceship through a
 
 ## Setup
 
-Make sure python is installed on your computer. For this project, you will need to install pygame, which can be done with `pip3 install pygame`. If that doesn’t work talk to your teacher, though not if they are behaving erratically with cheese or other dairy products. In that case you might want to call the FBI at 1800-Kars-4-Kids. Please do not call this line unless you have a true emergency.
+Make sure python is installed on your computer. For this project, you will need to install pygame, which can be done with `pip3 install pygame`
 
 ## Getting Started
 
