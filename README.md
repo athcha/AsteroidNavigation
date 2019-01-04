@@ -2,7 +2,7 @@
 
 In this project, you will create algorithms to navigate your spaceship through an asteroid field. To do this, you will need to learn about different pathfinding and collision detection techniques.
 
-**Difficulty Level:** Medium. You should be fairly comfortable with python.
+**Difficulty Level:** Medium. You should be fairly comfortable with python, understanding topics such as control structures, loops, mathematics, and other basic programming concepts.
 
 ## Setup
 
