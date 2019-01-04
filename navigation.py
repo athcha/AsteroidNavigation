@@ -76,8 +76,8 @@ while not done:
 			screen.blit(textsurface,(250,50))
 		if movable:
 			move = moveRocket()
-			rocketX += max(move[0], 5)
-			rocketY += max(move[1], 5)
+			rocketX += min(move[0], 5)
+			rocketY += min(move[1], 5)
 
 		screen.blit(rocket, (rocketX, rocketY))
 		pygame.display.flip()

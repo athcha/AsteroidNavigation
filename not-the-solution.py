@@ -14,7 +14,7 @@ goal = pygame.image.load('goal.png')
 
 goalX = 600
 goalY = 250
-goalrect = pygame.Rect(goalX + 56,goalY+24,151,131)
+goalrect = pygame.Rect(goalX - 56,goalY - 24,151,131)
 
 asteroidWidth = 48
 asteroidHeight = 48
@@ -44,7 +44,7 @@ def getBottomCollision():
   hasCollided = False
   for i in range(len(asteroids)):
     asteroidrect = pygame.Rect(asteroids[i][0], asteroids[i][1], 48, 48)
-    if pygame.Rect(rocketX, rocketY + 50, 50, 1).colliderect(asteroidrect):
+    if pygame.Rect(rocketX, rocketY + 50, 40, 1).colliderect(asteroidrect):
       hasCollided = True;
   return hasCollided
 
@@ -60,7 +60,7 @@ def getRightCollision():
   hasCollided = False
   for i in range(len(asteroids)):
     asteroidrect = pygame.Rect(asteroids[i][0], asteroids[i][1], 48, 48)
-    if pygame.Rect(rocketX + 50, rocketY, 10, 50).colliderect(asteroidrect):
+    if pygame.Rect(rocketX + 65, rocketY - 10, 10, 50).colliderect(asteroidrect):
       hasCollided = True;
   return hasCollided
 
@@ -110,8 +110,8 @@ while not done:
 			screen.blit(textsurface,(250,50))
 		if movable:
 			move = moveRocket()
-			rocketX += max(move[0], 5)
-			rocketY += max(move[1], 5)
+			rocketX += min(move[0], 5)
+			rocketY += min(move[1], 5)
 
 		screen.blit(rocket, (rocketX, rocketY))
 		pygame.display.flip()
