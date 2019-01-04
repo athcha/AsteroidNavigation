@@ -33,40 +33,54 @@ for i in range(numAsteroids):
 		asteroids.append((astX, astY))
 #TODO: Make helper methods to detect imminent collisions with asteroids
 def getTopCollision():
-	hasCollided = False
-	for i in range(len(asteroids)):
-		asteroidrect = pygame.Rect(asteroids[i][0], asteroids[i][1], 48, 48)
-		if pygame.Rect(playerX, PlayerY - 15, 30, 1).colliderect(asteroidrect):
-			hasCollided = True;
-	return hasCollided
+  hasCollided = False
+  for i in range(len(asteroids)):
+    asteroidrect = pygame.Rect(asteroids[i][0], asteroids[i][1], 48, 48)
+    if pygame.Rect(rocketX, rocketY - 15, 50, 1).colliderect(asteroidrect):
+      hasCollided = True;
+  return hasCollided
 
 def getBottomCollision():
-	hasCollided = False
-	for i in range(len(asteroids)):
-		asteroidrect = pygame.Rect(asteroids[i][0], asteroids[i][1], 48, 48)
-		if pygame.Rect(playerX, PlayerY + 50, 30, 1).colliderect(asteroidrect):
-			hasCollided = True;
-	return hasCollided
+  hasCollided = False
+  for i in range(len(asteroids)):
+    asteroidrect = pygame.Rect(asteroids[i][0], asteroids[i][1], 48, 48)
+    if pygame.Rect(rocketX, rocketY + 50, 50, 1).colliderect(asteroidrect):
+      hasCollided = True;
+  return hasCollided
 
 def getLeftCollision():
-	hasCollided = False
-	for i in range(len(asteroids)):
-		asteroidrect = pygame.Rect(asteroids[i][0], asteroids[i][1], 48, 48)
-		if pygame.Rect(playerX - 5, PlayerY, 10, 30).colliderect(asteroidrect):
-			hasCollided = True;
-	return hasCollided
+  hasCollided = False
+  for i in range(len(asteroids)):
+    asteroidrect = pygame.Rect(asteroids[i][0], asteroids[i][1], 48, 48)
+    if pygame.Rect(rocketX - 5, rocketY, 10, 50).colliderect(asteroidrect):
+      hasCollided = True;
+  return hasCollided
 
 def getRightCollision():
-	hasCollided = False
-	for i in range(len(asteroids)):
-		asteroidrect = pygame.Rect(asteroids[i][0], asteroids[i][1], 48, 48)
-		if pygame.Rect(playerX + 40, PlayerY, 10, 30).colliderect(asteroidrect):
-			hasCollided = True;
-	return hasCollided
+  hasCollided = False
+  for i in range(len(asteroids)):
+    asteroidrect = pygame.Rect(asteroids[i][0], asteroids[i][1], 48, 48)
+    if pygame.Rect(rocketX + 50, rocketY, 10, 50).colliderect(asteroidrect):
+      hasCollided = True;
+  return hasCollided
 
-#TODO: Use this method to decide how much your rocket moves each time
 def moveRocket():
-	return ((goalX - rocketX) + 100,(goalY - rocketY) + 50)
+	vX = 0
+	vY = 0
+	if goalX > rocketX:
+		vX = 5
+	if goalX < rocketX:
+		vX = -5
+	if goalY > rocketY:
+		vY = 5
+	if goalY < rocketY:
+		vY = -5
+	if getRightCollision() or getLeftCollision():
+		vX = 0
+	if getTopCollision() or getBottomCollision():
+		vY = 0
+	return (vX,vY)
+
 
 pygame.font.init() # you have to call this at the start,
                    # if you want to use this module.
@@ -96,8 +110,8 @@ while not done:
 			screen.blit(textsurface,(250,50))
 		if movable:
 			move = moveRocket()
-			rocketX += move[0]
-			rocketY += move[1]
+			rocketX += max(move[0], 5)
+			rocketY += max(move[1], 5)
 
 		screen.blit(rocket, (rocketX, rocketY))
 		pygame.display.flip()
